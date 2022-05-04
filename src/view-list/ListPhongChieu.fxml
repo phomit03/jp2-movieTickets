@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PhongChieuController">
+   <children>
+      <Text fill="RED" layoutX="445.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Danh sách Phòng Chiếu">
+         <font>
+            <Font name="System Bold Italic" size="28.0" />
+         </font>
+      </Text>
+      <TableView fx:id="tbPC" layoutX="137.0" layoutY="122.0" prefHeight="498.0" prefWidth="927.0">
+        <columns>
+          <TableColumn fx:id="pcMa" prefWidth="152.0" text="Mã Phòng" />
+          <TableColumn fx:id="pcTen" prefWidth="305.0" text="Tên Phòng" />
+            <TableColumn fx:id="pcSoGhe" prefWidth="160.0" text="Tổng Số Ghế" />
+            <TableColumn fx:id="pcEdit" prefWidth="155.0" text="Edit PC" />
+            <TableColumn fx:id="pcDelete" prefWidth="154.0" text="Delete PC" />
+        </columns>
+      </TableView>
+      <Button layoutX="137.0" layoutY="61.0" mnemonicParsing="false" onAction="#backHome" prefHeight="42.0" prefWidth="152.0" text="&lt;&lt;Back" textFill="RED" />
+      <Button layoutX="912.0" layoutY="61.0" mnemonicParsing="false" onAction="#addPC" prefHeight="42.0" prefWidth="152.0" text="Add Phòng&gt;&gt;" textFill="#fc0303" />
+   </children>
+</Pane>

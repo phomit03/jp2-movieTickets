@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FormVeController">
+   <children>
+      <Text fill="RED" layoutX="530.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Input Ve">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Text>
+      <Button layoutX="801.0" layoutY="490.0" mnemonicParsing="false" onAction="#submitVe" prefHeight="57.0" prefWidth="167.0" text="Submit" textFill="RED">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="233.0" layoutY="490.0" mnemonicParsing="false" onAction="#backListVe" prefHeight="57.0" prefWidth="167.0" text="&lt;&lt;Back" textFill="RED">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <TextField fx:id="vMaInput" layoutX="316.0" layoutY="143.0" prefHeight="57.0" prefWidth="568.0" promptText="MaVe" />
+      <TextField fx:id="vMaLCInput" layoutX="316.0" layoutY="243.0" prefHeight="57.0" prefWidth="568.0" promptText="MaLC" />
+      <TextField fx:id="vMaGheInput" layoutX="316.0" layoutY="352.0" prefHeight="57.0" prefWidth="568.0" promptText="MaGhe" />
+      <Text fx:id="errorMsg" fill="RED" layoutX="400.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="errorMsg" textAlignment="CENTER" visible="false" />
+   </children>
+</Pane>

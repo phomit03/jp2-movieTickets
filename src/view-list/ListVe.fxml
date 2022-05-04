@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VeController">
+   <children>
+      <TableView fx:id="tbVe" layoutX="115.0" layoutY="121.0" prefHeight="487.0" prefWidth="969.0">
+        <columns>
+            <TableColumn fx:id="vMa" prefWidth="207.0" text="Mã Vé" />
+            <TableColumn fx:id="vMaLC" minWidth="0.0" prefWidth="214.0" text="Mã Lịch Chiếu" />
+            <TableColumn fx:id="vMaGhe" minWidth="0.0" prefWidth="187.0" text="Mã Ghế" />
+            <TableColumn fx:id="vEdit" minWidth="0.0" prefWidth="182.0" text="Edit Vé" />
+            <TableColumn fx:id="vDelete" minWidth="0.0" prefWidth="178.0" text="Delete Vé" />
+        </columns>
+      </TableView>
+      <Text fill="RED" layoutX="521.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quản lý vé" wrappingWidth="157.6708984375">
+         <font>
+            <Font name="System Bold Italic" size="30.0" />
+         </font>
+      </Text>
+      <Button layoutX="947.0" layoutY="71.0" mnemonicParsing="false" onAction="#addVe" prefHeight="39.0" prefWidth="137.0" text="Add Vé&gt;&gt;" textFill="RED">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="115.0" layoutY="71.0" mnemonicParsing="false" onAction="#backHome" prefHeight="39.0" prefWidth="137.0" text="&lt;&lt;Back" textFill="RED">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

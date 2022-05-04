@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PhimController">
+   <children>
+      <Text fill="RED" layoutX="507.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Danh Sách Phim">
+         <font>
+            <Font name="System Bold Italic" size="37.0" />
+         </font>
+      </Text>
+      <TableView fx:id="tbPhim" layoutX="11.0" layoutY="122.0" prefHeight="506.0" prefWidth="1279.0">
+        <columns>
+          <TableColumn fx:id="pMa" prefWidth="85.0" text="Mã Phim" />
+            <TableColumn fx:id="pTen" prefWidth="215.0" text="Tên Phim" />
+            <TableColumn fx:id="pThoiLuong" prefWidth="105.0" text="Thời Lượng" />
+            <TableColumn fx:id="pDaoDien" prefWidth="128.0" text="Đạo Diễn" />
+            <TableColumn fx:id="pHangSX" prefWidth="155.0" text="Hãng Sản Xuất" />
+            <TableColumn fx:id="pTheLoai" prefWidth="100.0" text="Mã Thể Loại" />
+            <TableColumn fx:id="pNgayKC" prefWidth="92.0" text="Ngày KC" />
+            <TableColumn fx:id="pNgayKT" minWidth="0.0" prefWidth="95.0" text="Ngày KT" />
+            <TableColumn fx:id="pTrangThai" minWidth="0.0" prefWidth="129.0" text="Trạng Thái" />
+            <TableColumn fx:id="pEdit" minWidth="0.0" text="Edit Phim" />
+            <TableColumn fx:id="pDelete" minWidth="0.0" prefWidth="94.0" text="Delete Phim" />
+        </columns>
+      </TableView>
+      <Button layoutX="15.0" layoutY="63.0" mnemonicParsing="false" onAction="#backHome" prefHeight="46.0" prefWidth="158.0" text="&lt;&lt;Back" textFill="RED" />
+      <Button layoutX="1128.0" layoutY="63.0" mnemonicParsing="false" onAction="#addPhim" prefHeight="46.0" prefWidth="158.0" text="Add Phim&gt;&gt;" textFill="RED" />
+   </children>
+</Pane>

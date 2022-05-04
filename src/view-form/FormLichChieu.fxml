@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FormLichChieuController">
+   <children>
+      <Text fill="RED" layoutX="471.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Input Lich Chieu">
+         <font>
+            <Font name="System Bold Italic" size="34.0" />
+         </font>
+      </Text>
+      <Button layoutX="886.0" layoutY="497.0" mnemonicParsing="false" onAction="#submitLC" prefHeight="58.0" prefWidth="186.0" text="Submit" textFill="#fc0000" />
+      <Button layoutX="130.0" layoutY="497.0" mnemonicParsing="false" onAction="#backListLC" prefHeight="58.0" prefWidth="186.0" text="&lt;&lt;Back" textFill="RED" />
+      <TextField fx:id="lcMaInput" layoutX="130.0" layoutY="155.0" prefHeight="58.0" prefWidth="411.0" promptText="MaLC" />
+      <TextField fx:id="lcMaPhongInput" layoutX="130.0" layoutY="267.0" prefHeight="58.0" prefWidth="411.0" promptText="MaPhong" />
+      <TextField fx:id="lcMaPhimInput" layoutX="663.0" layoutY="155.0" prefHeight="58.0" prefWidth="411.0" promptText="MaPhim" />
+      <TextField fx:id="lcNgayChieuInput" layoutX="663.0" layoutY="267.0" prefHeight="58.0" prefWidth="411.0" promptText="NgayChieu" />
+      <TextField fx:id="lcGioChieuInput" layoutX="128.0" layoutY="381.0" prefHeight="58.0" prefWidth="411.0" promptText="GioChieu" />
+      <TextField fx:id="lcGiaVeInput" layoutX="661.0" layoutY="381.0" prefHeight="58.0" prefWidth="411.0" promptText="GiaVe" />
+      <Text fx:id="errorMsg" fill="RED" layoutX="582.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error!" textAlignment="CENTER" visible="false" />
+   </children>
+</Pane>

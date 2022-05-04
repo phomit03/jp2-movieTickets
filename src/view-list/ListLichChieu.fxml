@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LichChieuController">
+   <children>
+      <Text fill="#ff2200" layoutX="464.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lịch Chiếu Phim " textAlignment="CENTER" wrappingWidth="272.7822265625">
+         <font>
+            <Font name="System Bold Italic" size="33.0" />
+         </font>
+      </Text>
+      <Button layoutX="1005.0" layoutY="58.0" mnemonicParsing="false" onAction="#addLC" prefHeight="44.0" prefWidth="181.0" text="Thêm Lịch Chiếu &gt;&gt;" textFill="RED" />
+      <Button layoutX="14.0" layoutY="58.0" mnemonicParsing="false" onAction="#backHome" prefHeight="44.0" prefWidth="181.0" text="&lt;&lt;Back" textFill="RED" />
+      <TableView fx:id="tbLC" layoutX="14.0" layoutY="117.0" prefHeight="522.0" prefWidth="1173.0">
+         <columns>
+            <TableColumn fx:id="lcMa" prefWidth="147.0" text="Mã Lịch Chiếu " />
+            <TableColumn fx:id="lcMaPhim" prefWidth="157.0" text="Mã Phim" />
+            <TableColumn fx:id="lcMaPhong" prefWidth="169.0" text="Mã Phòng " />
+            <TableColumn fx:id="lcNgayChieu" prefWidth="198.0" text="Ngày Chiếu " />
+            <TableColumn fx:id="lcGioChieu" prefWidth="143.0" text="Giờ Chiếu " />
+            <TableColumn fx:id="lcGiaVe" prefWidth="145.0" text="Giá Vé (VND)" />
+            <TableColumn fx:id="lcEdit" prefWidth="101.0" text="Edit LC" />
+            <TableColumn fx:id="lcDelete" prefWidth="112.0" text="Delete LC" />
+         </columns>
+      </TableView>
+   </children>
+</Pane>
