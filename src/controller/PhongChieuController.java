@@ -1,7 +1,6 @@
 package controller;
 
-import DAO.LichChieuResponsity;
-import DAO.PhongChieuResponsity;
+import DAO_repository.PhongChieuRepository;
 import app.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.LichChieu;
 import model.PhongChieu;
 
 import java.net.URL;
@@ -38,7 +36,7 @@ public class PhongChieuController implements Initializable {
         pcDelete.setCellValueFactory(new PropertyValueFactory<>("delete"));
 
         try {
-            PhongChieuResponsity pcr = new PhongChieuResponsity();
+            PhongChieuRepository pcr = new PhongChieuRepository();
             ArrayList<PhongChieu> arrayList = pcr.listDataPC();   //gọi mảng chứa database từ DAO
 
             ObservableList<PhongChieu> listViewPC = FXCollections.observableArrayList(); //khai báo mảng chứa data tbView

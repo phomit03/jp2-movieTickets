@@ -1,30 +1,58 @@
 package controller;
 
-import DAO.VeResponsity;
+import DAO_repository.LichChieuRepository;
+import DAO_repository.VeRepository;
 import app.Main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import model.LichChieu;
 import model.Ve;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class FormVeController {
+public class FormVeController implements Initializable {
     public TextField vMaInput;
-    public TextField vMaLCInput;
+    public ComboBox<LichChieu> vMaLCInput;
     public TextField vMaGheInput;
     public Text errorMsg;
 
     public Ve editData;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        LichChieuRepository lcr = new LichChieuRepository();
+        ArrayList<LichChieu> arrayLC = lcr.listDataLC();
+        ObservableList<LichChieu> comboboxMaLC = FXCollections.observableArrayList();
+        comboboxMaLC.addAll(arrayLC);
+        vMaLCInput.setItems(comboboxMaLC);
+        vMaLCInput.getValue();
+    }
+
     public void setEditData(Ve editData){
         this.editData = editData;
         this.vMaInput.setText(editData.getMaVe().toString());
-        this.vMaLCInput.setText(editData.getMaLC().toString());
+        //set value combobox
+        for (int i = 0; i < this.vMaLCInput.getItems().size(); i++) {
+            //chay vòng lặp để set tất cả value có trong combobox
+            if (this.vMaLCInput.getItems().get(i).getMaLC().equals(editData.getMaLC())) {
+                //nếu value có trong mảng (combobox) = value được get (editData)
+                //thì setValue (hiển thị value đó)
+                vMaLCInput.setValue(this.vMaLCInput.getItems().get(i));
+                break;
+            }
+        }
         this.vMaGheInput.setText(editData.getMaGhe());
 
         this.vMaInput.setDisable(true);
@@ -37,20 +65,20 @@ public class FormVeController {
 
     public void submitVe(ActionEvent actionEvent) {
         String MaVe = this.vMaInput.getText();
-        String MaLC = this.vMaLCInput.getText();
+        LichChieu MaLC = this.vMaLCInput.getSelectionModel().getSelectedItem();
         String MaGhe = this.vMaGheInput.getText();
 
         try {
-            if (MaLC.isEmpty() || MaGhe.isEmpty()){
+            if (MaVe.equals("") || MaGhe.equals("")){
                 throw new Exception("Please enter full product information!");
             }
 
-            VeResponsity vr = new VeResponsity();
+            VeRepository vr = new VeRepository();
             if (this.editData == null) {
-                Ve v = new Ve(Integer.parseInt(MaVe), Integer.parseInt(MaLC), MaGhe);
+                Ve v = new Ve(Integer.parseInt(MaVe), MaLC.getMaLC(), MaGhe);
                 vr.addVe(v);
             } else {
-                Ve v = new Ve(Integer.parseInt(MaVe), Integer.parseInt(MaLC), MaGhe);
+                Ve v = new Ve(Integer.parseInt(MaVe), MaLC.getMaLC(), MaGhe);
                 vr.editVe(v);
             }
             this.backListVe();

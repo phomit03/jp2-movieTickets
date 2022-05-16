@@ -1,7 +1,6 @@
 package controller;
 
-import DAO.TheLoaiResponsity;
-import DAO.VeResponsity;
+import DAO_repository.VeRepository;
 import app.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.TheLoai;
 import model.Ve;
 
 import java.net.URL;
@@ -38,7 +36,7 @@ public class VeController implements Initializable {
         vDelete.setCellValueFactory(new PropertyValueFactory<>("delete"));
 
         try {
-            VeResponsity vr = new VeResponsity();
+            VeRepository vr = new VeRepository();
             ArrayList<Ve> arrayList = vr.listDataVe();   //gọi mảng chứa database từ DAO
 
             ObservableList<Ve> listViewVe = FXCollections.observableArrayList(); //khai báo mảng chứa data tbView

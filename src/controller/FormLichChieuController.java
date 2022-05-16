@@ -1,32 +1,82 @@
 package controller;
 
-import DAO.LichChieuResponsity;
+import DAO_repository.LichChieuRepository;
+import DAO_repository.PhimRepository;
+import DAO_repository.PhongChieuRepository;
 import app.Main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import model.LichChieu;
+import model.Phim;
+import model.PhongChieu;
 
+import java.net.URL;
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class FormLichChieuController {
-    public TextField lcMaInput, lcMaPhongInput, lcMaPhimInput,
-            lcNgayChieuInput, lcGioChieuInput, lcGiaVeInput;
+public class FormLichChieuController implements Initializable {
+    public TextField lcMaInput, lcGioChieuInput, lcGiaVeInput;
+    public ComboBox<Phim> lcMaPhimInput;
+    public ComboBox<PhongChieu> lcMaPhongInput;
+    public DatePicker lcNgayChieuInput;
     public Text errorMsg;
 
     public LichChieu editData;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        PhimRepository pr = new PhimRepository();
+        ArrayList<Phim> arrayPhim = pr.listDataPhim();
+        ObservableList<Phim> comboboxMaPhim = FXCollections.observableArrayList();
+        comboboxMaPhim.addAll(arrayPhim);
+        lcMaPhimInput.setItems(comboboxMaPhim);
+        lcMaPhimInput.getValue();
+
+        PhongChieuRepository pcr = new PhongChieuRepository();
+        ArrayList<PhongChieu> arrayPC = pcr.listDataPC();
+        ObservableList<PhongChieu> comboboxMaPhong = FXCollections.observableArrayList();
+        comboboxMaPhong.addAll(arrayPC);
+        lcMaPhongInput.setItems(comboboxMaPhong);
+        lcMaPhongInput.getValue();
+    }
+
     public void setEditData(LichChieu editData) {
         this.editData = editData;
         this.lcMaInput.setText(editData.getMaLC().toString());
-        this.lcMaPhimInput.setText(editData.getMaPhim().toString());
-        this.lcMaPhongInput.setText(editData.getMaPhong().toString());
-        this.lcNgayChieuInput.setText(editData.getNgayChieu().toString());
+        //set value combobox
+        for (int i = 0; i < this.lcMaPhimInput.getItems().size(); i++) {
+            //chay vòng lặp để set tất cả value có trong combobox
+            if (this.lcMaPhimInput.getItems().get(i).getMaPhim().equals(editData.getMaPhim())) {
+                //nếu value có trong mảng (combobox) = value được get (editData)
+                //thì setValue (hiển thị value đó)
+                lcMaPhimInput.setValue(this.lcMaPhimInput.getItems().get(i));
+                break;
+            }
+        }
+        for (int i = 0; i < this.lcMaPhongInput.getItems().size(); i++) {
+            //chay vòng lặp để set tất cả value có trong combobox
+            if (this.lcMaPhongInput.getItems().get(i).getMaPhong().equals(editData.getMaPhong())) {
+                //nếu value có trong mảng (combobox) = value được get (editData)
+                //thì setValue (hiển thị value đó)
+                lcMaPhongInput.setValue(this.lcMaPhongInput.getItems().get(i));
+                break;
+            }
+        }
+        //set value DatePicker
+        this.lcNgayChieuInput.setValue(editData.getNgayChieu().toLocalDate());  //convert value sang LocalDate
         this.lcGioChieuInput.setText(editData.getGioChieu().toString());
         this.lcGiaVeInput.setText(editData.getGiaVe().toString());
 
@@ -40,24 +90,24 @@ public class FormLichChieuController {
 
     public void submitLC(ActionEvent event){
         String malc = this.lcMaInput.getText();
-        String maphim = this.lcMaPhimInput.getText();
-        String maphong = this.lcMaPhongInput.getText();
-        String ngaychieu = this.lcNgayChieuInput.getText();
+        Phim maphim = lcMaPhimInput.getSelectionModel().getSelectedItem();
+        PhongChieu maphong = lcMaPhongInput.getSelectionModel().getSelectedItem();
+        LocalDate ngaychieu = this.lcNgayChieuInput.getValue();
         String giochieu = this.lcGioChieuInput.getText();
         String giave = this.lcGiaVeInput.getText();
 
         try {
-            if (maphim.isEmpty() || maphong.isEmpty() || ngaychieu.equals("")  || giochieu.equals("") || giave.isEmpty()){
+            if (malc.equals("") || giochieu.equals("") || giave.isEmpty()){
                 throw new Exception("Please enter full product information!");
             }
 
-            LichChieuResponsity lcr = new LichChieuResponsity();
+            LichChieuRepository lcr = new LichChieuRepository();
             if(this.editData == null){ //nếu input rỗng thì add
-                LichChieu lc = new LichChieu(Integer.parseInt(malc), Integer.parseInt(maphim), Integer.parseInt(maphong),
+                LichChieu lc = new LichChieu(Integer.parseInt(malc), maphim.getMaPhim(), maphong.getMaPhong(),
                         Date.valueOf(ngaychieu), Time.valueOf(giochieu), Double.parseDouble(giave));
                 lcr.addLC(lc);
             } else {    //edit
-                LichChieu lc = new LichChieu(Integer.parseInt(malc), Integer.parseInt(maphim), Integer.parseInt(maphong),
+                LichChieu lc = new LichChieu(Integer.parseInt(malc), maphim.getMaPhim(), maphong.getMaPhong(),
                         Date.valueOf(ngaychieu), Time.valueOf(giochieu), Double.parseDouble(giave));
                 lcr.editLC(lc);
             }

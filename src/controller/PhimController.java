@@ -1,7 +1,6 @@
 package controller;
 
-import DAO.LichChieuResponsity;
-import DAO.PhimResponsity;
+import DAO_repository.PhimRepository;
 import app.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -49,7 +48,7 @@ public class PhimController implements Initializable {
         pDelete.setCellValueFactory(new PropertyValueFactory<>("delete"));
 
         try {
-            PhimResponsity pr = new PhimResponsity();
+            PhimRepository pr = new PhimRepository();
             ArrayList<Phim> arrayList = pr.listDataPhim();   //gọi mảng chứa database từ DAO
 
             ObservableList<Phim> listViewPhim = FXCollections.observableArrayList(); //khai báo mảng chứa data tbView

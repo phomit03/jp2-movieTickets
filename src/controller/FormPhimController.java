@@ -1,6 +1,7 @@
 package controller;
 
-import DAO.PhimResponsity;
+import DAO_repository.PhimRepository;
+import DAO_repository.TheLoaiRepository;
 import app.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,34 +11,41 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import model.Phim;
+import model.TheLoai;
 
 import java.net.URL;
 import java.sql.Date;
 import java.sql.Time;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class FormPhimController implements Initializable {
     public TextField pMaInput, pTenInput, pThoiLuongInput, pDaoDienInput,
-            pHangSXInput, pNgayKCInput, pNgayKTInput, pTrangThaiInput;
+            pHangSXInput, pTrangThaiInput;
+    public DatePicker pNgayKCInput, pNgayKTInput;
+    public ComboBox<TheLoai> pMaTLInput;
+
     public Text errorMsg;
 
     public Phim editData;
 
-    public ComboBox<String> pMaTLInput;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<String> ls = FXCollections.observableArrayList("201", "202", "203", "204", "205");
-
-        pMaTLInput.setItems(ls);
-        System.out.println(pMaTLInput.getItems().size());
+//        ObservableList<String> comboboxMaTL = FXCollections.observableArrayList("201", "202", "203", "204", "205");
+        TheLoaiRepository tlr = new TheLoaiRepository();
+        ArrayList<TheLoai> arrayTL = tlr.listDataTL();
+        ObservableList<TheLoai> comboboxMaTL = FXCollections.observableArrayList();
+        comboboxMaTL.addAll(arrayTL);
+        pMaTLInput.setItems(comboboxMaTL);
+        pMaTLInput.getValue();
     }
-
 
 
     public void setEditData(Phim editData) {
@@ -47,57 +55,69 @@ public class FormPhimController implements Initializable {
         this.pThoiLuongInput.setText(editData.getThoiLuong().toString());
         this.pDaoDienInput.setText(editData.getDaoDien());
         this.pHangSXInput.setText(editData.getHangSanXuat());
+        //set value combobox
+        for (int i = 0; i < this.pMaTLInput.getItems().size(); i++) {
+//          System.out.println(this.pMaTLInput.getItems().get(i).getMaTL());
 
-        this.pNgayKCInput.setText(editData.getNgayKhoiChieu().toString());
-        this.pNgayKTInput.setText(editData.getNgayKetThuc().toString());
-        this.pTrangThaiInput.setText(editData.getTrangThai());
+            //chay vòng lặp để set tất cả value có trong combobox
+            if (this.pMaTLInput.getItems().get(i).getMaTL().equals(editData.getMaTL())) {
+                //nếu value có trong mảng (combobox) = value được get (editData)
+                //thì setValue (hiển thị value đó)
+                pMaTLInput.setValue(this.pMaTLInput.getItems().get(i));
+                break;
+            }
+        }
+        //set value date picker
+        this.pNgayKCInput.setValue(editData.getNgayKhoiChieu().toLocalDate()); //convert kiểu dữ liệu sang LocalDate
+        this.pNgayKTInput.setValue(editData.getNgayKetThuc().toLocalDate());
+        this.pTrangThaiInput.setText(editData.getTrangThai().toString());
 
-        this.pMaInput.setDisable(true);
+        this.pMaInput.setDisable(true); //setDisable: không cho chỉnh sửa mã
     }
 
 
-    public void backListPhim() throws Exception{
+    public void backListPhim() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view-list/ListPhim.fxml"));
         Main.rootStage.setScene(new Scene(root, 1300, 650));
     }
 
-    public void submitPhim(ActionEvent event){
+    public void submitPhim(ActionEvent event) {
         String MaPhim = this.pMaInput.getText();
         String TenPhim = this.pTenInput.getText();
         String ThoiLuong = this.pThoiLuongInput.getText();
         String DaoDien = this.pDaoDienInput.getText();
         String HangSX = this.pHangSXInput.getText();
+        //get value combobox
+        TheLoai MaTL = pMaTLInput.getSelectionModel().getSelectedItem();
+        //DatePicker
+        LocalDate NgayKC = this.pNgayKCInput.getValue();
+        LocalDate NgayKT = this.pNgayKTInput.getValue();
 
-        String MaTL = this.pMaTLInput.getSelectionModel().toString();
-
-        String NgayKC = this.pNgayKCInput.getText();
-        String NgayKT = this.pNgayKTInput.getText();
         String TrangThai = this.pTrangThaiInput.getText();
 
-        try{
-            if (TenPhim.equals("") || ThoiLuong.isEmpty() || DaoDien.equals("") ||
-            HangSX.equals("") || NgayKC.equals("") || NgayKT.equals("") || TrangThai.equals("")){
+        try {
+            if (MaPhim.equals("") || TenPhim.equals("") || ThoiLuong.isEmpty() || DaoDien.equals("") ||
+                    HangSX.equals("") || TrangThai.equals("")) {
                 throw new Exception("Please enter full product information!");
             }
 
-            PhimResponsity pr = new PhimResponsity();
-            if(this.editData == null) {
+            PhimRepository pr = new PhimRepository();
+            if (this.editData == null) {
                 Phim p = new Phim(Integer.parseInt(MaPhim), TenPhim, Time.valueOf(ThoiLuong), DaoDien, HangSX,
-                        Integer.parseInt(MaTL), Date.valueOf(NgayKC), Date.valueOf(NgayKT), TrangThai);
+                        MaTL.getMaTL(), Date.valueOf(NgayKC), Date.valueOf(NgayKT), Integer.parseInt(TrangThai));
                 pr.addPhim(p);
             } else {
                 Phim p = new Phim(Integer.parseInt(MaPhim), TenPhim, Time.valueOf(ThoiLuong), DaoDien, HangSX,
-                        Integer.parseInt(MaTL), Date.valueOf(NgayKC), Date.valueOf(NgayKT), TrangThai);
+                        MaTL.getMaTL(), Date.valueOf(NgayKC), Date.valueOf(NgayKT), Integer.parseInt(TrangThai));
                 pr.editPhim(p);
             }
             this.backListPhim();    //tu dong back ve list sau khi duoc add hoac edit
 
-        } catch (NumberFormatException nf){
+        } catch (NumberFormatException nf) {
             errorMsg.setVisible(true);
             errorMsg.setFill(Color.RED);
             errorMsg.setText(nf.getMessage());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             errorMsg.setVisible(true);
             errorMsg.setFill(Color.RED);
             errorMsg.setText(e.getMessage());

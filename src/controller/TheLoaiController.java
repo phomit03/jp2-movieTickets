@@ -1,6 +1,6 @@
 package controller;
 
-import DAO.TheLoaiResponsity;
+import DAO_repository.TheLoaiRepository;
 import app.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,7 +34,7 @@ public class TheLoaiController implements Initializable {
         tlDelete.setCellValueFactory(new PropertyValueFactory<>("delete"));
 
         try {
-            TheLoaiResponsity tlr = new TheLoaiResponsity();
+            TheLoaiRepository tlr = new TheLoaiRepository();
             ArrayList<TheLoai> arrayList = tlr.listDataTL();   //gọi mảng chứa database từ DAO
 
             ObservableList<TheLoai> listViewTL = FXCollections.observableArrayList(); //khai báo mảng chứa data tbView

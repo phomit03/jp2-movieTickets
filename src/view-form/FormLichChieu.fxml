@@ -15,11 +15,11 @@
       <Button layoutX="886.0" layoutY="497.0" mnemonicParsing="false" onAction="#submitLC" prefHeight="58.0" prefWidth="186.0" text="Submit" textFill="#fc0000" />
       <Button layoutX="130.0" layoutY="497.0" mnemonicParsing="false" onAction="#backListLC" prefHeight="58.0" prefWidth="186.0" text="&lt;&lt;Back" textFill="RED" />
       <TextField fx:id="lcMaInput" layoutX="130.0" layoutY="155.0" prefHeight="58.0" prefWidth="411.0" promptText="MaLC" />
-      <TextField fx:id="lcMaPhongInput" layoutX="130.0" layoutY="267.0" prefHeight="58.0" prefWidth="411.0" promptText="MaPhong" />
-      <TextField fx:id="lcMaPhimInput" layoutX="663.0" layoutY="155.0" prefHeight="58.0" prefWidth="411.0" promptText="MaPhim" />
-      <TextField fx:id="lcNgayChieuInput" layoutX="663.0" layoutY="267.0" prefHeight="58.0" prefWidth="411.0" promptText="NgayChieu" />
+      <ComboBox fx:id="lcMaPhimInput" layoutX="663.0" layoutY="155.0" prefHeight="58.0" prefWidth="411.0" promptText="MaPhim" />
+      <ComboBox fx:id="lcMaPhongInput" layoutX="130.0" layoutY="267.0" prefHeight="58.0" prefWidth="411.0" promptText="MaPhong" />
+      <DatePicker fx:id="lcNgayChieuInput" layoutX="663.0" layoutY="267.0" prefHeight="58.0" prefWidth="411.0" promptText="NgayChieu" />
       <TextField fx:id="lcGioChieuInput" layoutX="128.0" layoutY="381.0" prefHeight="58.0" prefWidth="411.0" promptText="GioChieu" />
-      <TextField fx:id="lcGiaVeInput" layoutX="661.0" layoutY="381.0" prefHeight="58.0" prefWidth="411.0" promptText="GiaVe" />
+      <TextField fx:id="lcGiaVeInput" layoutX="661.0" layoutY="381.0" prefHeight="58.0" prefWidth="411.0" promptText="GiaVe (VND)" />
       <Text fx:id="errorMsg" fill="RED" layoutX="582.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error!" textAlignment="CENTER" visible="false" />
    </children>
 </Pane>

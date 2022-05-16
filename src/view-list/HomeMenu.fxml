@@ -7,7 +7,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
    <children>
-      <Text fill="RED" layoutX="268.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUẢN LÝ RẠP CHIẾU PHIM CGV" underline="true">
+      <Text fill="RED" layoutX="246.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUẢN LÝ RẠP CHIẾU PHIM CGV" underline="true">
          <font>
             <Font name="System Bold" size="47.0" />
          </font>
@@ -27,12 +27,17 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <Button defaultButton="true" layoutX="234.0" layoutY="392.0" mnemonicParsing="false" onAction="#listTL" prefHeight="230.0" prefWidth="341.0" text="DANH SÁCH THỂ LOẠI">
+      <Button defaultButton="true" layoutX="43.0" layoutY="391.0" mnemonicParsing="false" onAction="#listTL" prefHeight="230.0" prefWidth="341.0" text="DANH SÁCH THỂ LOẠI">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <Button defaultButton="true" layoutX="622.0" layoutY="391.0" mnemonicParsing="false" onAction="#listVe" prefHeight="230.0" prefWidth="341.0" text="DANH SÁCH VÉ ĐÃ ĐẶT">
+      <Button defaultButton="true" layoutX="429.0" layoutY="391.0" mnemonicParsing="false" onAction="#listVe" prefHeight="230.0" prefWidth="341.0" text="DANH SÁCH VÉ ĐÃ ĐẶT">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+      <Button defaultButton="true" layoutX="813.0" layoutY="391.0" mnemonicParsing="false" onAction="#doanhThu" prefHeight="230.0" prefWidth="341.0" text="DOANH THU PHIM">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>

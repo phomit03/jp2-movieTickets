@@ -1,6 +1,6 @@
 package controller;
 
-import DAO.LichChieuResponsity;
+import DAO_repository.LichChieuRepository;
 import app.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -42,7 +42,7 @@ public class LichChieuController implements Initializable {
         lcDelete.setCellValueFactory(new PropertyValueFactory<>("delete"));
 
         try {
-            LichChieuResponsity lcr = new LichChieuResponsity();
+            LichChieuRepository lcr = new LichChieuRepository();
             ArrayList<LichChieu> arrayList = lcr.listDataLC();   //gọi mảng chứa database từ DAO
 
             ObservableList<LichChieu> listViewLC = FXCollections.observableArrayList(); //khai báo mảng chứa data tbView

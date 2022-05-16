@@ -1,6 +1,6 @@
 package model;
 
-import DAO.TheLoaiResponsity;
+import DAO_repository.TheLoaiRepository;
 import app.Main;
 import controller.FormTheLoaiController;
 import javafx.fxml.FXMLLoader;
@@ -41,7 +41,7 @@ public class TheLoai {
 
         this.delete.setOnAction(event -> {
             try{
-                TheLoaiResponsity tlr = new TheLoaiResponsity();
+                TheLoaiRepository tlr = new TheLoaiRepository();
 
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Delete File");
@@ -100,5 +100,11 @@ public class TheLoai {
 
     public void setDelete(Button delete) {
         this.delete = delete;
+    }
+
+    //hàm hiển thị value combobox
+    @Override
+    public String toString() {
+        return this.getMaTL() + " - " + this.getTenTL();
     }
 }

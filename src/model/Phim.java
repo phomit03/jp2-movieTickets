@@ -1,23 +1,17 @@
 package model;
 
-import DAO.LichChieuResponsity;
-import DAO.PhimResponsity;
+import DAO_repository.PhimRepository;
 import app.Main;
-import controller.FormLichChieuController;
 import controller.FormPhimController;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 public class Phim {
@@ -28,7 +22,7 @@ public class Phim {
     String hangSanXuat;
     Integer maTL;
     Date ngayKhoiChieu, ngayKetThuc;
-    String trangThai;
+    Integer trangThai;
     Button edit, delete;
 
     //contructor
@@ -36,7 +30,7 @@ public class Phim {
 
     }
 
-    public Phim(Integer maPhim, String tenPhim, Time thoiLuong, String daoDien, String hangSanXuat, Integer maTL, Date ngayKhoiChieu, Date ngayKetThuc, String trangThai) {
+    public Phim(Integer maPhim, String tenPhim, Time thoiLuong, String daoDien, String hangSanXuat, Integer maTL, Date ngayKhoiChieu, Date ngayKetThuc, Integer trangThai) {
         this.maPhim = maPhim;
         this.tenPhim = tenPhim;
         this.thoiLuong = thoiLuong;
@@ -64,7 +58,7 @@ public class Phim {
 
         this.delete.setOnAction(event -> {
             try {
-                PhimResponsity pr = new PhimResponsity();
+                PhimRepository pr = new PhimRepository();
 
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Delete File");
@@ -85,12 +79,13 @@ public class Phim {
                 }
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../view-list/ListPhim.fxml"));
                 Parent root = loader.load();
-                Main.rootStage.setScene(new Scene(root,1300,650));
+                Main.rootStage.setScene(new Scene(root,1200,650));
             } catch (Exception e){
 
             }
         });
     }
+
 
     //getter & setter
     public Integer getMaPhim() {
@@ -157,11 +152,11 @@ public class Phim {
         this.ngayKetThuc = ngayKetThuc;
     }
 
-    public String getTrangThai() {
+    public Integer getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(String trangThai) {
+    public void setTrangThai(Integer trangThai) {
         this.trangThai = trangThai;
     }
 
@@ -179,5 +174,10 @@ public class Phim {
 
     public void setDelete(Button delete) {
         this.delete = delete;
+    }
+
+    @Override
+    public String toString() {
+        return this.getMaPhim() + " - Phim: " + getTenPhim() + " - TrangThai: " + getTrangThai();
     }
 }

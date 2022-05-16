@@ -1,6 +1,6 @@
 package model;
 
-import DAO.VeResponsity;
+import DAO_repository.VeRepository;
 import app.Main;
 import controller.FormVeController;
 import javafx.fxml.FXMLLoader;
@@ -43,7 +43,7 @@ public class Ve {
         this.delete = new Button("Delete");
         this.delete.setOnAction(event -> {
             try {
-                VeResponsity vr = new VeResponsity();
+                VeRepository vr = new VeRepository();
 
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Delete File");

@@ -17,12 +17,12 @@
       <TextField fx:id="pThoiLuongInput" layoutX="136.0" layoutY="198.0" prefHeight="58.0" prefWidth="411.0" promptText="ThoiLuong" />
       <TextField fx:id="pDaoDienInput" layoutX="659.0" layoutY="198.0" prefHeight="58.0" prefWidth="411.0" promptText="DaoDien" />
       <TextField fx:id="pHangSXInput" layoutX="136.0" layoutY="288.0" prefHeight="58.0" prefWidth="411.0" promptText="HangSanXuat" />
-      <TextField fx:id="pNgayKCInput" layoutX="136.0" layoutY="377.0" prefHeight="58.0" prefWidth="411.0" promptText="NgayKhoiChieu" />
-      <TextField fx:id="pNgayKTInput" layoutX="659.0" layoutY="377.0" prefHeight="58.0" prefWidth="411.0" promptText="NgayKetThuc" />
+      <ComboBox fx:id="pMaTLInput" layoutX="659.0" layoutY="288.0" prefHeight="58.0" prefWidth="411.0" promptText="Choose MaTL" />
+      <DatePicker fx:id="pNgayKCInput" layoutX="136.0" layoutY="377.0" prefHeight="58.0" prefWidth="411.0" promptText="NgayKhoiChieu" />
+      <DatePicker fx:id="pNgayKTInput" layoutX="659.0" layoutY="377.0" prefHeight="58.0" prefWidth="411.0" promptText="NgayKetThuc" />
       <TextField fx:id="pTrangThaiInput" layoutX="136.0" layoutY="469.0" prefHeight="58.0" prefWidth="411.0" promptText="TrangThai" />
-      <Button layoutX="884.0" layoutY="481.0" mnemonicParsing="false" onAction="#submitPhim" prefHeight="58.0" prefWidth="186.0" text="Submit" textFill="#fc0000" />
-      <Button layoutX="659.0" layoutY="481.0" mnemonicParsing="false" onAction="#backListPhim" prefHeight="58.0" prefWidth="186.0" text="&lt;&lt;Back" textFill="RED" />
+      <Button layoutX="884.0" layoutY="510.0" mnemonicParsing="false" onAction="#submitPhim" prefHeight="58.0" prefWidth="186.0" text="Submit" textFill="#fc0000" />
+      <Button layoutX="659.0" layoutY="510.0" mnemonicParsing="false" onAction="#backListPhim" prefHeight="58.0" prefWidth="186.0" text="&lt;&lt;Back" textFill="RED" />
       <Text fx:id="errorMsg" fill="RED" layoutX="314.0" layoutY="578.0" strokeType="OUTSIDE" strokeWidth="0.0" text="errorMsg" visible="false" />
-      <ComboBox promptText="Choose MaTL" editable="true" fx:id="pMaTLInput" layoutX="659.0" layoutY="288.0" mouseTransparent="true" prefHeight="58.0" prefWidth="411.0" />
    </children>
 </Pane>

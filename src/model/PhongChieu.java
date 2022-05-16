@@ -1,9 +1,7 @@
 package model;
 
-import DAO.PhimResponsity;
-import DAO.PhongChieuResponsity;
+import DAO_repository.PhongChieuRepository;
 import app.Main;
-import controller.FormPhimController;
 import controller.FormPhongChieuController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -46,7 +44,7 @@ public class PhongChieu {
 
         this.delete.setOnAction(event -> {
             try {
-                PhongChieuResponsity pr = new PhongChieuResponsity();
+                PhongChieuRepository pr = new PhongChieuRepository();
 
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Delete File");
@@ -113,5 +111,10 @@ public class PhongChieu {
 
     public void setDelete(Button delete) {
         this.delete = delete;
+    }
+
+    @Override
+    public String toString() {
+        return this.getMaPhong() + " - " + getTenPhong();
     }
 }

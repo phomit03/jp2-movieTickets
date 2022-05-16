@@ -1,6 +1,6 @@
 package controller;
 
-import DAO.PhongChieuResponsity;
+import DAO_repository.PhongChieuRepository;
 import app.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -41,7 +41,7 @@ public class FormPhongChieuController {
                 throw new Exception("Please enter full product information!");
             }
 
-            PhongChieuResponsity pcr = new PhongChieuResponsity();
+            PhongChieuRepository pcr = new PhongChieuRepository();
             if (this.editData == null) { //nếu input rỗng thì add
                 PhongChieu pc = new PhongChieu(Integer.parseInt(MaPhong), TenPhong, Integer.parseInt(TongSoGhe));
                 pcr.addPC(pc);

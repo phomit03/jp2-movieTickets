@@ -1,6 +1,6 @@
 package model;
 
-import DAO.LichChieuResponsity;
+import DAO_repository.LichChieuRepository;
 import app.Main;
 import controller.FormLichChieuController;
 import javafx.fxml.FXMLLoader;
@@ -49,7 +49,7 @@ public class LichChieu {
 
         this.delete.setOnAction(event -> {
             try {
-                LichChieuResponsity lcr = new LichChieuResponsity();
+                LichChieuRepository lcr = new LichChieuRepository();
 
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Delete File");
@@ -141,5 +141,11 @@ public class LichChieu {
 
     public void setDelete(Button delete) {
         this.delete = delete;
+    }
+
+    @Override
+    public String toString() {
+        return this.getMaLC() + ": MaPhim: " + this.getMaPhim() + " - MaPhong: " + this.getMaPhong()
+                + " - NgayChieu: " + this.getNgayChieu() + " - GioChieu: " + this.getGioChieu();
     }
 }

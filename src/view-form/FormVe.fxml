@@ -23,7 +23,7 @@
          </font>
       </Button>
       <TextField fx:id="vMaInput" layoutX="316.0" layoutY="143.0" prefHeight="57.0" prefWidth="568.0" promptText="MaVe" />
-      <TextField fx:id="vMaLCInput" layoutX="316.0" layoutY="243.0" prefHeight="57.0" prefWidth="568.0" promptText="MaLC" />
+      <ComboBox fx:id="vMaLCInput" layoutX="316.0" layoutY="242.0" prefHeight="57.0" prefWidth="568.0" promptText="MaLC" />
       <TextField fx:id="vMaGheInput" layoutX="316.0" layoutY="352.0" prefHeight="57.0" prefWidth="568.0" promptText="MaGhe" />
       <Text fx:id="errorMsg" fill="RED" layoutX="400.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="errorMsg" textAlignment="CENTER" visible="false" />
    </children>

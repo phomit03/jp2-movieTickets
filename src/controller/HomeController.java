@@ -18,7 +18,7 @@ public class HomeController implements Initializable {
 
     public void listPhim(ActionEvent event) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../view-list/ListPhim.fxml"));
-        Main.rootStage.setScene(new Scene(root, 1300, 650));
+        Main.rootStage.setScene(new Scene(root, 1200, 650));
     }
 
     public void listLC(ActionEvent event) throws Exception{
@@ -38,6 +38,11 @@ public class HomeController implements Initializable {
 
     public void listVe(ActionEvent event) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../view-list/ListVe.fxml"));
+        Main.rootStage.setScene(new Scene(root, 1200, 650));
+    }
+
+    public void doanhThu(ActionEvent event) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("../view-list/DoanhThu.fxml"));
         Main.rootStage.setScene(new Scene(root, 1200, 650));
     }
 }

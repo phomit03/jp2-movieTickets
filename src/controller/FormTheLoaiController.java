@@ -1,7 +1,6 @@
 package controller;
 
-import DAO.LichChieuResponsity;
-import DAO.TheLoaiResponsity;
+import DAO_repository.TheLoaiRepository;
 import app.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -40,7 +39,7 @@ public class FormTheLoaiController {
                 throw new Exception("Please enter full product information!");
             }
 
-            TheLoaiResponsity tlr = new TheLoaiResponsity();
+            TheLoaiRepository tlr = new TheLoaiRepository();
             if(this.editData == null){ //nếu input rỗng thì add
                 TheLoai lc = new TheLoai(Integer.parseInt(MaTL), TenTL);
                 tlr.addTL(lc);
