@@ -28,9 +28,10 @@ import java.util.ResourceBundle;
 
 public class FormPhimController implements Initializable {
     public TextField pMaInput, pTenInput, pThoiLuongInput, pDaoDienInput,
-            pHangSXInput, pTrangThaiInput;
+            pHangSXInput;
     public DatePicker pNgayKCInput, pNgayKTInput;
     public ComboBox<TheLoai> pMaTLInput;
+    public ComboBox<String> pTrangThaiInput;
 
     public Text errorMsg;
 
@@ -45,6 +46,9 @@ public class FormPhimController implements Initializable {
         comboboxMaTL.addAll(arrayTL);
         pMaTLInput.setItems(comboboxMaTL);
         pMaTLInput.getValue();
+
+        ObservableList<String> comboboxTT = FXCollections.observableArrayList("Stop showing", "Now showing", "Coming soon");
+        pTrangThaiInput.setItems(comboboxTT);
     }
 
 
@@ -70,7 +74,13 @@ public class FormPhimController implements Initializable {
         //set value date picker
         this.pNgayKCInput.setValue(editData.getNgayKhoiChieu().toLocalDate()); //convert kiểu dữ liệu sang LocalDate
         this.pNgayKTInput.setValue(editData.getNgayKetThuc().toLocalDate());
-        this.pTrangThaiInput.setText(editData.getTrangThai().toString());
+        //set value combobox
+        for (int i = 0; i < this.pTrangThaiInput.getItems().size(); i++) {
+            if (this.pTrangThaiInput.getItems().get(i).equals(editData.getTrangThai())) {
+                pTrangThaiInput.setValue(this.pTrangThaiInput.getItems().get(i));
+                break;
+            }
+        }
 
         this.pMaInput.setDisable(true); //setDisable: không cho chỉnh sửa mã
     }
@@ -78,7 +88,7 @@ public class FormPhimController implements Initializable {
 
     public void backListPhim() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view-list/ListPhim.fxml"));
-        Main.rootStage.setScene(new Scene(root, 1300, 650));
+        Main.rootStage.setScene(new Scene(root, 1200, 650));
     }
 
     public void submitPhim(ActionEvent event) {
@@ -92,23 +102,23 @@ public class FormPhimController implements Initializable {
         //DatePicker
         LocalDate NgayKC = this.pNgayKCInput.getValue();
         LocalDate NgayKT = this.pNgayKTInput.getValue();
-
-        String TrangThai = this.pTrangThaiInput.getText();
+        //get value combobox
+        String TrangThai = this.pTrangThaiInput.getSelectionModel().getSelectedItem();
 
         try {
             if (MaPhim.equals("") || TenPhim.equals("") || ThoiLuong.isEmpty() || DaoDien.equals("") ||
-                    HangSX.equals("") || TrangThai.equals("")) {
+                    HangSX.equals("")) {
                 throw new Exception("Please enter full product information!");
             }
 
             PhimRepository pr = new PhimRepository();
             if (this.editData == null) {
                 Phim p = new Phim(Integer.parseInt(MaPhim), TenPhim, Time.valueOf(ThoiLuong), DaoDien, HangSX,
-                        MaTL.getMaTL(), Date.valueOf(NgayKC), Date.valueOf(NgayKT), Integer.parseInt(TrangThai));
+                        MaTL.getMaTL(), Date.valueOf(NgayKC), Date.valueOf(NgayKT), TrangThai);
                 pr.addPhim(p);
             } else {
                 Phim p = new Phim(Integer.parseInt(MaPhim), TenPhim, Time.valueOf(ThoiLuong), DaoDien, HangSX,
-                        MaTL.getMaTL(), Date.valueOf(NgayKC), Date.valueOf(NgayKT), Integer.parseInt(TrangThai));
+                        MaTL.getMaTL(), Date.valueOf(NgayKC), Date.valueOf(NgayKT), TrangThai);
                 pr.editPhim(p);
             }
             this.backListPhim();    //tu dong back ve list sau khi duoc add hoac edit

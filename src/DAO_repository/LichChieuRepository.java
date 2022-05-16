@@ -70,6 +70,7 @@ public class LichChieuRepository extends FLichChieuRespon {
             stt.setString(3,lichchieu.getNgayChieu().toString());
             stt.setString(4,lichchieu.getGioChieu().toString());
             stt.setDouble(5,lichchieu.getGiaVe());
+
             stt.setInt(6,lichchieu.getMaLC());
             // insert
             stt.execute();

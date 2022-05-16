@@ -34,7 +34,7 @@ public class PhimRepository extends FPhimRespon {
                     rs.getInt("maTL"),
                     Date.valueOf(rs.getString("ngayKhoiChieu")),
                     Date.valueOf(rs.getString("ngayKetThuc")),
-                    rs.getInt("trangThai")
+                    rs.getString("trangThai")
                 ));
             }
             return list;
@@ -60,13 +60,7 @@ public class PhimRepository extends FPhimRespon {
             stt.setInt(6, phim.getMaTL());
             stt.setString(7, phim.getNgayKhoiChieu().toString());
             stt.setString(8, phim.getNgayKetThuc().toString());
-            if (phim.getTrangThai() == 0){
-                throw new Exception("Movie not deacactive!");
-            } else if (phim.getTrangThai() == 1 || phim.getTrangThai() == 2){
-                stt.setInt(9, phim.getTrangThai());
-            } else {
-                throw new Exception("TrangThai does not exist!");
-            }
+            stt.setString(9, phim.getTrangThai());
             // insert
             stt.execute();
             System.out.println(sql_txt);
@@ -90,11 +84,7 @@ public class PhimRepository extends FPhimRespon {
             stt.setInt(5, phim.getMaTL());
             stt.setString(6, phim.getNgayKhoiChieu().toString());
             stt.setString(7, phim.getNgayKetThuc().toString());
-            if (phim.getTrangThai() == 0 || phim.getTrangThai() == 1 || phim.getTrangThai() == 2){
-                stt.setInt(8, phim.getTrangThai());
-            } else {
-                throw new Exception("TrangThai does not exist!");
-            }
+            stt.setString(8, phim.getTrangThai());
             stt.setInt(9, phim.getMaPhim());
 
             // insert

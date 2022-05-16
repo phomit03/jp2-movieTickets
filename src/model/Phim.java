@@ -22,7 +22,7 @@ public class Phim {
     String hangSanXuat;
     Integer maTL;
     Date ngayKhoiChieu, ngayKetThuc;
-    Integer trangThai;
+    String trangThai;
     Button edit, delete;
 
     //contructor
@@ -30,7 +30,7 @@ public class Phim {
 
     }
 
-    public Phim(Integer maPhim, String tenPhim, Time thoiLuong, String daoDien, String hangSanXuat, Integer maTL, Date ngayKhoiChieu, Date ngayKetThuc, Integer trangThai) {
+    public Phim(Integer maPhim, String tenPhim, Time thoiLuong, String daoDien, String hangSanXuat, Integer maTL, Date ngayKhoiChieu, Date ngayKetThuc, String trangThai) {
         this.maPhim = maPhim;
         this.tenPhim = tenPhim;
         this.thoiLuong = thoiLuong;
@@ -152,11 +152,11 @@ public class Phim {
         this.ngayKetThuc = ngayKetThuc;
     }
 
-    public Integer getTrangThai() {
+    public String getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(Integer trangThai) {
+    public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
 

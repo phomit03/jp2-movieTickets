@@ -100,6 +100,9 @@ public class FormLichChieuController implements Initializable {
             if (malc.equals("") || giochieu.equals("") || giave.isEmpty()){
                 throw new Exception("Please enter full product information!");
             }
+            if (Double.parseDouble(giave) < 0){
+                throw new Exception("Fare must be positive");
+            }
 
             LichChieuRepository lcr = new LichChieuRepository();
             if(this.editData == null){ //nếu input rỗng thì add

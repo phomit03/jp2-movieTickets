@@ -40,6 +40,9 @@ public class FormPhongChieuController {
             if (TenPhong.equals("") || TongSoGhe.isEmpty()) {
                 throw new Exception("Please enter full product information!");
             }
+            if (Integer.parseInt(TongSoGhe) < 0){
+                throw new Exception("Number of seats must be positive"); //số ghế < 0
+            }
 
             PhongChieuRepository pcr = new PhongChieuRepository();
             if (this.editData == null) { //nếu input rỗng thì add
@@ -49,9 +52,9 @@ public class FormPhongChieuController {
                 PhongChieu pc = new PhongChieu(Integer.parseInt(MaPhong), TenPhong, Integer.parseInt(TongSoGhe));
                 pcr.editPC(pc);
             }
-
-            //dữ liệu đổ vào assigment01.database, từ assigment01.database tiếp tục đổ ngược lại tbStudent
             this.backListPC();  //tự động back lại nếu dữ liệu up lên và đổ về thành công
+            //dữ liệu đổ vào database, từ database tiếp tục đổ ngược lại tbPhongChieu
+
 
         } catch (NumberFormatException nf) {
             errorMsg.setVisible(true);
