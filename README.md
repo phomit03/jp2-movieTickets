@@ -1,2 +1,2 @@
 # jp2-movietickets
-Java2 Session02 - FPT Aptech
+Ứng dụng phục vụ cho nhân viên quản lý rạp chiếu phim - JavaFx Database 
